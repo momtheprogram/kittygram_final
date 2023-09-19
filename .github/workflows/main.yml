@@ -33,8 +33,8 @@ jobs:
     - name: Test with flake8 and django tests
       env:
         POSTGRES_USER: kittygram_user
-          POSTGRES_PASSWORD: kittygram_password
-          POSTGRES_DB: kittygram
+        POSTGRES_PASSWORD: kittygram_password
+        POSTGRES_DB: kittygram
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
       run: |
