@@ -128,17 +128,17 @@ jobs:
       - build_frontend_and_push_to_docker_hub
       - build_gateway_and_push_to_docker_hub
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
-    - name: Copy docker-compose.yml via ssh
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: "docker-compose.production.yml"
-       target: "kittygram"
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Copy docker-compose.yml via ssh
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: "docker-compose.production.yml"
+          target: "kittygram"
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
