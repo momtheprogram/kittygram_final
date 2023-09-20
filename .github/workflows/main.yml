@@ -53,8 +53,8 @@ jobs:
       - name: Login to Docker 
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOC_NAME }}
-          password: ${{ secrets.DOC_PASS }}
+          username: ${{ secrets.DOC_NAME }} 
+          password: ${{ secrets.DOC_PASS }} 
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
@@ -141,18 +141,18 @@ jobs:
       - name: Executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          script: |
-             cd kittygram
-             sudo docker compose -f docker-compose.production.yml pull
-             sudo docker compose -f docker-compose.production.yml down
-             sudo docker compose -f docker-compose.production.yml up -d
-             sudo docker compose -f docker-compose.production.yml exec backend pyt>
-             sudo docker compose -f docker-compose.production.yml exec backend pyt>
-             sudo docker compose -f docker-compose.production.yml exec backend cp >
+           host: ${{ secrets.HOST }}
+           username: ${{ secrets.USER }}
+           key: ${{ secrets.SSH_KEY }}
+           passphrase: ${{ secrets.SSH_PASSPHRASE }}
+           script: |
+              cd kittygram
+              sudo docker compose -f docker-compose.production.yml pull
+              sudo docker compose -f docker-compose.production.yml down
+              sudo docker compose -f docker-compose.production.yml up -d
+              sudo docker compose -f docker-compose.production.yml exec backend pyt>
+              sudo docker compose -f docker-compose.production.yml exec backend pyt>
+              sudo docker compose -f docker-compose.production.yml exec backend cp >
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
