@@ -13,8 +13,11 @@ services:
   backend:
     image: momcode/kittygram_backend
     env_file: .env
+    depends_on:
+      - db
     volumes:
       - static_volume:/backend_static
+      - media:/app/media
   frontend:
     image: momcode/kittygram_frontend
     env_file: .env
@@ -24,7 +27,12 @@ services:
   gateway:
     image: momcode/kittygram_gateway
     env_file: .env
+    depends_on:
+      - db
+      - backend
+      - frontend
     volumes:
       - static_volume:/staticfiles/
+      - media:/app/media
     ports:
       - 9000:80
